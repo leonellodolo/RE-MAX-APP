@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { SlidersHorizontal, X } from "lucide-react";
 import { properties } from "../data/properties";
@@ -19,12 +19,6 @@ export default function PropertiesPage() {
   const [filterBedrooms, setFilterBedrooms] = useState("");
   const [filterMaxPrice, setFilterMaxPrice] = useState("");
   const [showFilters, setShowFilters] = useState(false);
-
-  useEffect(() => {
-    setFilterType((searchParams.get("type") as PropertyType) || "");
-    setFilterOperation((searchParams.get("operation") as OperationType) || "");
-    setFilterLocation(searchParams.get("location") || "");
-  }, [searchParams]);
 
   const filtered = properties.filter((p) => {
     if (filterType && p.type !== filterType) return false;
